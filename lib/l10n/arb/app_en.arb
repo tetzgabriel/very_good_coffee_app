@@ -1,7 +1,15 @@
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+  "@@locale": "en",
+  "appBarTitle": "Very Good Coffee",
+  "@appBarTitle": {
+    "description": "Text shown in the AppBar"
+  },
+  "refreshButtonLabel": "Try new image",
+  "@refreshButtonLabel": {
+    "description": "Text shown in the refresh button"
+  },
+  "favoritesButtonLabel": "Add to favorites",
+  "@favoritesButtonLabel": {
+    "description": "Text shown in the favorites button"
+  }
 }

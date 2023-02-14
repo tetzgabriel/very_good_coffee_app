@@ -22,7 +22,7 @@ class ImageFinderView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(title: Text(l10n.appBarTitle)),
       body: Center(
         child: Column(
           children: [
@@ -36,7 +36,7 @@ class ImageFinderView extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: () => context.read<ImageFinderCubit>().getImage(),
               icon: const Icon(Icons.refresh),
-              label: const Text('Reload'),
+              label: Text(l10n.refreshButtonLabel),
             ),
             ElevatedButton.icon(
               onPressed: () => context.read<ImageFinderCubit>().saveLocalImage(
@@ -45,7 +45,7 @@ class ImageFinderView extends StatelessWidget {
                         .image,
                   ),
               icon: const Icon(Icons.favorite),
-              label: const Text('Favorite'),
+              label: Text(l10n.favoritesButtonLabel),
             )
           ],
         ),

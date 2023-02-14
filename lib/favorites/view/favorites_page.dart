@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_coffee_app/favorites/favorites.dart';
-import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -23,7 +22,7 @@ class FavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
+      appBar: AppBar(title: Text(l10n.appBarTitle)),
       body: Center(
         child: Column(
           children: [

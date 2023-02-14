@@ -1,7 +1,15 @@
 {
     "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
+    "appBarTitle": "Muy Buen Cafe",
+    "@appBarTitle": {
+        "description": "Texto mostrado en la AppBar"
+    },
+    "refreshButtonLabel": "Prueba nueva imagen",
+    "@refreshButtonLabel": {
+        "description": "Texto que se muestra en el botón de actualización"
+    },
+    "favoritesButtonLabel": "Agregar a los favoritos",
+    "@favoritesButtonLabel": {
+        "description": "Texto mostrado en el botón de favoritos"
     }
 }
