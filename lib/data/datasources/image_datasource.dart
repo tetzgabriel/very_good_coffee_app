@@ -15,7 +15,9 @@ class ImageDatasourceImpl implements ImageDatasource {
         .get(Uri.parse('https://coffee.alexflipnote.dev/random.json'));
 
     if (response.statusCode == 200) {
-      return CoffeeImageExtensions.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+      return CoffeeImageExtensions.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>,
+      );
     } else {
       throw Exception('Failed to retrieve image');
     }

@@ -14,12 +14,10 @@ class CoffeeImage extends Equatable {
 
 extension CoffeeImageExtensions on CoffeeImage {
   Map<String, dynamic> toJson() {
-    return { 'file': file };
+    return {'file': file};
   }
 
   static CoffeeImage fromJson(Map<String, dynamic> json) {
-    return CoffeeImage(
-        file: json['file'] as String
-    );
+    return CoffeeImage(file: json['file'] as String);
   }
 }

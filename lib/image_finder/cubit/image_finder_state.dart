@@ -16,10 +16,17 @@ class ImageFinderStateError extends ImageFinderState {
   List get props => [error];
 }
 
+class ImageFinderStateLoading extends ImageFinderState {
+  const ImageFinderStateLoading();
+
+  @override
+  List get props => [];
+}
+
 class ImageFinderStateLoaded extends ImageFinderState {
   const ImageFinderStateLoaded({required this.image});
 
-  final String image;
+  final CoffeeImage image;
 
   @override
   List get props => [image];
