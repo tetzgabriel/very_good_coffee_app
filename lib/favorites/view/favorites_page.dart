@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_coffee_app/favorites/favorites.dart';
@@ -61,8 +62,10 @@ class ImageSection extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             itemCount: (cubit.state as FavoritesStateLoaded).images.length,
             itemBuilder: (BuildContext context, int index) {
-              return Image.network(
-                  (cubit.state as FavoritesStateLoaded).images[index].file);
+              return CachedNetworkImage(
+                imageUrl:
+                    (cubit.state as FavoritesStateLoaded).images[index].file,
+              );
             },
           );
         } else if (cubit.state is FavoritesStateError) {
