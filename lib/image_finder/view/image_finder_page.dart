@@ -23,28 +23,30 @@ class ImageFinderView extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
-      body: const Center(child: CounterText()),
+      body: Center(child: Column(
+        children: [
+          Image.network(context.select((ImageFinderCubit cubit) {
+            if (cubit.state is ImageFinderStateLoaded) {
+              return (cubit.state as ImageFinderStateLoaded).image;
+            } else {
+              return 'https://coffee.alexflipnote.dev/random';
+            }
+          }
+          ),
+          ),
+        ],
+      ),
+      ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
-            onPressed: () => context.read<ImageFinderCubit>().increment(),
+            onPressed: () => context.read<ImageFinderCubit>().getImage(),
             child: const Icon(Icons.add),
           )
         ],
       ),
     );
-  }
-}
-
-class CounterText extends StatelessWidget {
-  const CounterText({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final count = context.select((ImageFinderCubit cubit) => cubit.state);
-    return Text('$count', style: theme.textTheme.displayLarge);
   }
 }
