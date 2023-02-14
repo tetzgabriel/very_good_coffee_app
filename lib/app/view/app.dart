@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:very_good_coffee_app/home/home.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
 
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const ImageFinderPage(),
+      home: const HomePage(),
     );
   }
 }
