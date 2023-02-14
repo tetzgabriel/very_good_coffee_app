@@ -9,10 +9,10 @@ class LocalImageRepositoryImpl implements LocalImageRepository {
   final LocalImageDatasource localImageDataSource;
 
   @override
-  Future<Either<String, List<CoffeeImage>?>> getLocalImages() async {
+  Future<Either<String, List<CoffeeImage>>> getLocalImages() async {
     try {
       final result = await localImageDataSource.getLocalImages();
-      return Right(result);
+      return Right(result.length == 0 ? [] : result);
     } catch(_) {
       return const Left('Error');
     }

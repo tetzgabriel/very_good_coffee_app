@@ -7,7 +7,7 @@ class GetLocalImages {
 
   final LocalImageRepository localImageRepository;
 
-  Future<Either<String, List<CoffeeImage>?>> call() {
+  Future<Either<String, List<CoffeeImage>>> call() {
     return localImageRepository.getLocalImages();
   }
 }

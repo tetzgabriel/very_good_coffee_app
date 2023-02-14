@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:very_good_coffee_app/domain/entities/coffee_image.dart';
 
 abstract class LocalImageDatasource {
-  Future<List<CoffeeImage>?> getLocalImages();
+  Future<List<CoffeeImage>> getLocalImages();
 
   Future<void> saveLocalImage({required CoffeeImage image});
 }
@@ -12,12 +12,19 @@ class LocalImageDatasourceImpl implements LocalImageDatasource {
   const LocalImageDatasourceImpl();
 
   @override
-  Future<List<CoffeeImage>?> getLocalImages() async {
+  Future<List<CoffeeImage>> getLocalImages() async {
     final prefs = await SharedPreferences.getInstance();
-    final savedImages = prefs.getString('coffee_images');
+    final savedImages = prefs.getStringList('coffee_images');
 
     if (savedImages != null) {
-      return jsonDecode(savedImages) as List<CoffeeImage>;
+      final savedImagesToList = savedImages
+          .map(
+            (item) =>
+            CoffeeImage.fromJson(json.decode(item) as Map<String, dynamic>),
+      )
+          .toList();
+
+      return savedImagesToList;
     } else {
       return [];
     }

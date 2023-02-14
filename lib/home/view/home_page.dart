@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_coffee_app/counter/counter.dart';
+import 'package:very_good_coffee_app/favorites/favorites.dart';
 import 'package:very_good_coffee_app/home/home.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 
@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: IndexedStack(
         index: selectedTab.index,
-        children: const [ImageFinderPage(), CounterPage()],
+        children: const [ImageFinderPage(), FavoritesPage()],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
