@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_coffee_app/domain/entities/coffee_image.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
 
@@ -27,43 +26,55 @@ class ImageFinderView extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            context.select((ImageFinderCubit cubit) {
-              if (cubit.state is ImageFinderStateLoaded) {
-                return Image.network(
-                  (cubit.state as ImageFinderStateLoaded).image.file,
-                );
-              } else if (cubit.state is ImageFinderStateError) {
-                return const Text('Error');
-              } else {
-                return const CircularProgressIndicator();
-              }
-            }),
+            const SizedBox(
+              height: 80,
+            ),
+            const ImageSection(),
+            const SizedBox(
+              height: 80,
+            ),
+            ElevatedButton.icon(
+              onPressed: () => context.read<ImageFinderCubit>().getImage(),
+              icon: const Icon(Icons.refresh),
+              label: const Text('Reload'),
+            ),
+            ElevatedButton.icon(
+              onPressed: () => context.read<ImageFinderCubit>().saveLocalImage(
+                    image: (context.read<ImageFinderCubit>().state
+                            as ImageFinderStateLoaded)
+                        .image,
+                  ),
+              icon: const Icon(Icons.favorite),
+              label: const Text('Favorite'),
+            )
           ],
         ),
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () => context.read<ImageFinderCubit>().getImage(),
-            child: const Icon(Icons.add),
-          ),
-          context.select((ImageFinderCubit cubit) {
-            if (cubit.state is ImageFinderStateLoaded) {
-              return FloatingActionButton(
-                onPressed: () => context
-                    .read<ImageFinderCubit>()
-                    .saveLocalImage(
-                        image: (cubit.state as ImageFinderStateLoaded).image),
-                child: const Icon(Icons.abc_rounded),
-              );
-            } else {
-              return Text('teste');
-            }
-          })
-        ],
-      ),
+    );
+  }
+}
+
+class ImageSection extends StatelessWidget {
+  const ImageSection({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 300,
+      width: 300,
+      child: context.select((ImageFinderCubit cubit) {
+        if (cubit.state is ImageFinderStateLoaded) {
+          return Image.network(
+            (cubit.state as ImageFinderStateLoaded).image.file,
+          );
+        } else if (cubit.state is ImageFinderStateError) {
+          return const Text('Error');
+        } else {
+          return const CircularProgressIndicator();
+        }
+      }),
     );
   }
 }
