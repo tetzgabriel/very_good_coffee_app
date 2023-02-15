@@ -45,7 +45,8 @@ class LocalImageDatasourceImpl implements LocalImageDatasource {
             (item) =>
                 CoffeeImage.fromJson(json.decode(item) as Map<String, dynamic>),
           )
-          .toList()..add(image);
+          .toList()
+        ..add(image);
 
       final listToSave =
           savedImagesToList.map((item) => jsonEncode(item.toJson())).toList();
