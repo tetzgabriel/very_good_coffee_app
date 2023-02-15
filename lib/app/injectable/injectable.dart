@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:very_good_coffee_app/app/http_client/dio_client.dart';
 import 'package:very_good_coffee_app/favorites/data/datasources/local_image_datasource.dart';
 import 'package:very_good_coffee_app/favorites/data/repositories/local_image_repository_impl.dart';
 import 'package:very_good_coffee_app/favorites/domain/repositories/local_image_repository.dart';
@@ -14,7 +16,10 @@ final injectable = GetIt.instance;
 
 void setupDependencies() {
   injectable
-    ..registerFactory<ImageDatasource>(ImageDatasourceImpl.new)
+    ..registerFactory<DioClient>(() => DioClient(Dio()))
+    ..registerFactory<ImageDatasource>(
+      () => ImageDatasourceImpl(http: injectable.get<DioClient>()),
+    )
     ..registerFactory<ImageRepository>(
       () => ImageRepositoryImpl(injectable.get<ImageDatasource>()),
     )
@@ -23,15 +28,13 @@ void setupDependencies() {
     )
     ..registerFactory<LocalImageDatasource>(LocalImageDatasourceImpl.new)
     ..registerFactory<LocalImageRepository>(
-          () => LocalImageRepositoryImpl(injectable.get<LocalImageDatasource>()),
+      () => LocalImageRepositoryImpl(injectable.get<LocalImageDatasource>()),
     )
     ..registerFactory<SaveLocalImage>(
       () => SaveLocalImage(injectable.get<LocalImageRepository>()),
     )
     ..registerFactory<GetLocalImages>(
-          () => GetLocalImages(injectable.get<LocalImageRepository>()),
+      () => GetLocalImages(injectable.get<LocalImageRepository>()),
     )
-    ..registerSingleton(ImageFinderCubit())
-
-    ;
+    ..registerSingleton(ImageFinderCubit());
 }
