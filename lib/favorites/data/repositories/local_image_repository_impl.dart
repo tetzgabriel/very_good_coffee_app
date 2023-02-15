@@ -23,7 +23,7 @@ class LocalImageRepositoryImpl implements LocalImageRepository {
     try {
       await localImageDataSource.saveLocalImage(image: image);
     } catch(_) {
-      print('error');
+      throw Exception();
     }
   }
 }
