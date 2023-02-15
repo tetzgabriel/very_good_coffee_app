@@ -3,4 +3,4 @@ linter:
   rules:
     public_member_api_docs: false
 analyzer:
-  exclude: [lib/app/http_client/http_client.dart, lib/image_finder/data/datasources/image_datasource.dart, lib/image_finder/domain/repositories/image_repository.dart]
+  exclude: [ lib/app/http_client/http_client.dart, lib/image_finder/data/datasources/image_datasource.dart, lib/image_finder/domain/repositories/image_repository.dart ]

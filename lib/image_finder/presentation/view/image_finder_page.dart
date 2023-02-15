@@ -25,33 +25,36 @@ class ImageFinderView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.appBarTitle)),
       body: Center(
-        child: Column(
-          children: [
-            const ImageSection(),
-            ElevatedButton.icon(
-              onPressed: () => context.read<ImageFinderCubit>().getImage(),
-              icon: const Icon(Icons.refresh),
-              label: Text(l10n.refreshButtonLabel),
-            ),
-            ElevatedButton.icon(
-              onPressed: () => context.read<ImageFinderCubit>().saveLocalImage(
-                    image: (context.read<ImageFinderCubit>().state
-                            as ImageFinderStateLoaded)
-                        .image,
-                  ),
-              icon: const Icon(Icons.favorite),
-              label: Text(l10n.favoritesButtonLabel),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute<dynamic>(
-                  builder: (context) => const FavoritesPage(),
-                ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const ImageSection(),
+              ElevatedButton.icon(
+                onPressed: () => context.read<ImageFinderCubit>().getImage(),
+                icon: const Icon(Icons.refresh),
+                label: Text(l10n.refreshButtonLabel),
               ),
-              child: const Text('Go to favorites'),
-            )
-          ],
+              ElevatedButton.icon(
+                onPressed: () =>
+                    context.read<ImageFinderCubit>().saveLocalImage(
+                          image: (context.read<ImageFinderCubit>().state
+                                  as ImageFinderStateLoaded)
+                              .image,
+                        ),
+                icon: const Icon(Icons.favorite),
+                label: Text(l10n.favoritesButtonLabel),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                    builder: (context) => const FavoritesPage(),
+                  ),
+                ),
+                child: const Text('Go to favorites'),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -68,7 +71,7 @@ class ImageSection extends StatelessWidget {
     return SizedBox(
       height: 150,
       width: 150,
-      child: context.select((FavoritesCubit cubit) {
+      child: context.select((ImageFinderCubit cubit) {
         if (cubit.state is ImageFinderStateLoaded) {
           return Image.network(
             (cubit.state as ImageFinderStateLoaded).image.file,

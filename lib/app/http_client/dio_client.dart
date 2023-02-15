@@ -8,7 +8,7 @@ class DioClient implements HttpClient<Response<dynamic>> {
 
   @override
   Future<Response<dynamic>> get(String path) async {
-    final result = await dio.get<Response<dynamic>>(
+    final result = await dio.get<Map<String, dynamic>>(
       path,
     );
     return result;
