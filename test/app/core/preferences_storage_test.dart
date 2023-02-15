@@ -32,14 +32,14 @@ void main() {
       expect(sut.getStringList(fakeStringKey), anotherFakeListValue);
     });
 
-    test('should trhow assertation if init was not called on setString', () {
+    test('should throw assertion if init was not called on setString', () {
       expect(
         () => sut.setStringList(fakeStringKey, fakeStringListValue),
         throwsAssertionError,
       );
     });
 
-    test('should trhow assertation if init was not called on getString', () {
+    test('should throw assertion if init was not called on getString', () {
       expect(() => sut.getStringList(fakeStringKey), throwsAssertionError);
     });
   });

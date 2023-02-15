@@ -11,5 +11,21 @@
     "favoritesButtonLabel": "Agregar a los favoritos",
     "@favoritesButtonLabel": {
         "description": "Texto mostrado en el botón de favoritos"
+    },
+    "navigateToFavoritesButtonLabel": "is a favoritos",
+    "@navigateToFavoritesButtonLabel": {
+        "description": "Text mostrado en el botón de navegacion"
+    },
+    "imageFinderTitle": "Aquí está tu café",
+    "@imageFinderTitle": {
+        "description": "Text mostrado en la parte superior de image finder"
+    },
+    "imageFinderSubtitle": "Disfrúta-le!",
+    "@imageFinderSubtitle": {
+        "description": "Text mostrado en la parte superior de image finder"
+    },
+    "errorText": "Ocurrió un error con su café :(\n Vuelve a intentarlo en unos minutos.",
+    "@errorText": {
+        "description": "Text mostrado en casos de erros"
     }
 }
