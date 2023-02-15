@@ -45,7 +45,9 @@ class ImageFinderView extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const FavoritesPage()),
+                MaterialPageRoute<dynamic>(
+                  builder: (context) => const FavoritesPage(),
+                ),
               ),
               child: const Text('Go to favorites'),
             )

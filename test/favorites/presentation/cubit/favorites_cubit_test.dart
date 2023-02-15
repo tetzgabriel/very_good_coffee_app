@@ -27,7 +27,7 @@ void main() {
     );
   });
 
-  blocTest(
+  blocTest<FavoritesCubit, FavoritesState>(
     'Emits FavoritesStateLoaded when GetLocalImages succeeds',
     build: () => sut,
     act: (controller) => sut.getLocalImages(),
@@ -40,7 +40,7 @@ void main() {
     },
   );
 
-  blocTest(
+  blocTest<FavoritesCubit, FavoritesState>(
     'Emits FavoritesStateError when GetLocalImages fails',
     build: () {
       when(mockGetLocalImages.call).thenAnswer(

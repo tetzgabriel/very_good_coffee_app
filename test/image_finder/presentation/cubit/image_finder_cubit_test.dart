@@ -35,7 +35,7 @@ void main() {
     );
   });
 
-  blocTest(
+  blocTest<ImageFinderCubit, ImageFinderState>(
     'Emits ImageFinderStateLoaded when GetImage succeeds',
     build: () => sut,
     act: (controller) => sut.getImage(),
@@ -48,7 +48,7 @@ void main() {
     },
   );
 
-  blocTest(
+  blocTest<ImageFinderCubit, ImageFinderState>(
     'Emits ImageFinderStateError when GetImage fails',
     build: () {
       when(mockGetImage.call).thenAnswer(
@@ -69,7 +69,7 @@ void main() {
     },
   );
 
-  blocTest(
+  blocTest<ImageFinderCubit, ImageFinderState>(
     'Calls usecase when saveLocalImage is called',
     build: () => sut,
     act: (controller) => sut.saveLocalImage(image: CoffeeImageFixture.model),

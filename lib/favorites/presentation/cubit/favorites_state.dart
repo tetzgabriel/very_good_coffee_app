@@ -4,7 +4,7 @@ class FavoritesState extends Equatable {
   const FavoritesState();
 
   @override
-  List get props => [];
+  List<dynamic> get props => [];
 }
 
 class FavoritesStateError extends FavoritesState {
@@ -13,14 +13,14 @@ class FavoritesStateError extends FavoritesState {
   final String error;
 
   @override
-  List get props => [error];
+  List<dynamic> get props => [error];
 }
 
 class FavoritesStateLoading extends FavoritesState {
   const FavoritesStateLoading();
 
   @override
-  List get props => [];
+  List<dynamic> get props => [];
 }
 
 class FavoritesStateLoaded extends FavoritesState {
@@ -29,5 +29,5 @@ class FavoritesStateLoaded extends FavoritesState {
   final List<CoffeeImage> images;
 
   @override
-  List get props => [images];
+  List<dynamic> get props => [images];
 }

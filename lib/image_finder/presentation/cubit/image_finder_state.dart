@@ -4,7 +4,7 @@ class ImageFinderState extends Equatable {
   const ImageFinderState();
 
   @override
-  List get props => [];
+  List<dynamic> get props => [];
 }
 
 class ImageFinderStateError extends ImageFinderState {
@@ -13,14 +13,14 @@ class ImageFinderStateError extends ImageFinderState {
   final String error;
 
   @override
-  List get props => [error];
+  List<dynamic> get props => [error];
 }
 
 class ImageFinderStateLoading extends ImageFinderState {
   const ImageFinderStateLoading();
 
   @override
-  List get props => [];
+  List<dynamic> get props => [];
 }
 
 class ImageFinderStateLoaded extends ImageFinderState {
@@ -29,5 +29,5 @@ class ImageFinderStateLoaded extends ImageFinderState {
   final CoffeeImage image;
 
   @override
-  List get props => [image];
+  List<dynamic> get props => [image];
 }

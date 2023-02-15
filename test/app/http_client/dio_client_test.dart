@@ -19,10 +19,10 @@ void main() {
     const url = 'https://httpbin.org/get';
     final httpClient = DioClient(mockDio);
     final mockResponse =
-        Response(requestOptions: RequestOptions(), statusCode: 200);
+        Response<dynamic>(requestOptions: RequestOptions(), statusCode: 200);
 
     when(
-      () => mockDio.get(
+      () => mockDio.get<dynamic>(
         url,
         options: any(named: 'options'),
       ),

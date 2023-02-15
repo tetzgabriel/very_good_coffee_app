@@ -7,9 +7,9 @@ abstract class ImageDatasource {
 }
 
 class ImageDatasourceImpl implements ImageDatasource {
-  const ImageDatasourceImpl({required HttpClient http}) : _http = http;
+  const ImageDatasourceImpl({required HttpClient<dynamic> http}) : _http = http;
 
-  final HttpClient _http;
+  final HttpClient<dynamic> _http;
 
   @override
   Future<CoffeeImage> getImage() async {
