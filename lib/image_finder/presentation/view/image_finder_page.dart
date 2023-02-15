@@ -27,13 +27,7 @@ class ImageFinderView extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(
-              height: 80,
-            ),
             const ImageSection(),
-            const SizedBox(
-              height: 80,
-            ),
             ElevatedButton.icon(
               onPressed: () => context.read<ImageFinderCubit>().getImage(),
               icon: const Icon(Icons.refresh),
@@ -70,8 +64,8 @@ class ImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
-      width: 300,
+      height: 150,
+      width: 150,
       child: context.select((ImageFinderCubit cubit) {
         if (cubit.state is ImageFinderStateLoaded) {
           return Image.network(

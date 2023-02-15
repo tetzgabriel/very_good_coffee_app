@@ -9,7 +9,6 @@ import 'package:very_good_coffee_app/image_finder/data/datasources/image_datasou
 import 'package:very_good_coffee_app/image_finder/domain/repositories/image_repository.dart';
 import 'package:very_good_coffee_app/image_finder/domain/usecases/get_image.dart';
 import 'package:very_good_coffee_app/image_finder/domain/usecases/save_local_image.dart';
-import 'package:very_good_coffee_app/image_finder/presentation/cubit/image_finder_cubit.dart';
 
 void main() {
   group('Service locator', () {
