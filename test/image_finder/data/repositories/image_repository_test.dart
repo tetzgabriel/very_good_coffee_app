@@ -23,8 +23,7 @@ void main() {
   });
 
   test('Repository should return an Error', () async {
-    when(mockImageDatasource.getImage)
-        .thenThrow(Exception());
+    when(mockImageDatasource.getImage).thenThrow(Exception());
 
     final result = await imageRepository.getImage();
     verify(mockImageDatasource.getImage).called(1);

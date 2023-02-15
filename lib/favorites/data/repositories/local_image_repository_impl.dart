@@ -13,7 +13,7 @@ class LocalImageRepositoryImpl implements LocalImageRepository {
     try {
       final result = await localImageDataSource.getLocalImages();
       return Right(result.isEmpty ? [] : result);
-    } catch(_) {
+    } catch (_) {
       return const Left('Error');
     }
   }
@@ -22,7 +22,7 @@ class LocalImageRepositoryImpl implements LocalImageRepository {
   Future<void> saveLocalImage({required CoffeeImage image}) async {
     try {
       await localImageDataSource.saveLocalImage(image: image);
-    } catch(_) {
+    } catch (_) {
       throw Exception();
     }
   }

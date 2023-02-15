@@ -13,7 +13,7 @@ class ImageRepositoryImpl implements ImageRepository {
     try {
       final result = await imageDataSource.getImage();
       return Right(result);
-    } catch(_) {
+    } catch (_) {
       return const Left('Error');
     }
   }

@@ -21,7 +21,7 @@ void main() {
     );
 
     when(mockGetLocalImages.call).thenAnswer(
-          (_) async => Right(
+      (_) async => Right(
         CoffeeImageFixture.list,
       ),
     );
@@ -44,7 +44,7 @@ void main() {
     'Emits FavoritesStateError when GetLocalImages fails',
     build: () {
       when(mockGetLocalImages.call).thenAnswer(
-            (_) async => const Left(
+        (_) async => const Left(
           'failure',
         ),
       );
