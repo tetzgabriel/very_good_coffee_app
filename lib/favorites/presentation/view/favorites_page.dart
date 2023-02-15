@@ -24,42 +24,27 @@ class FavoritesView extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.appBarTitle)),
-      body: Center(
-        child: Column(
-          children: const [
-            SizedBox(
-              height: 80,
-            ),
-            ImageSection(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ImageSection extends StatelessWidget {
-  const ImageSection({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300,
-      width: 300,
-      child: context.select((FavoritesCubit cubit) {
+      body: context.select((FavoritesCubit cubit) {
         if (cubit.state is FavoritesStateLoaded) {
-          return ListView.builder(
+          return Padding(
             padding: const EdgeInsets.all(8),
-            itemCount: (cubit.state as FavoritesStateLoaded).images.length,
-            itemBuilder: (BuildContext context, int index) {
-              return CachedNetworkImage(
-                imageUrl:
-                    (cubit.state as FavoritesStateLoaded).images[index].file,
-              );
-            },
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 10,
+              ),
+              itemCount: (cubit.state as FavoritesStateLoaded).images.length,
+              itemBuilder: (BuildContext context, index) {
+                return CachedNetworkImage(
+                  imageUrl:
+                  (cubit.state as FavoritesStateLoaded).images[index].file,
+                  fit: BoxFit.fitHeight,
+                );
+              },
+            ),
           );
+
         } else if (cubit.state is FavoritesStateError) {
           return const Text('Error');
         } else {
