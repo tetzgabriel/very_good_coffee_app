@@ -69,8 +69,8 @@ class ImageSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
-      width: 150,
+      height: 250,
+      width: 250,
       child: context.select((ImageFinderCubit cubit) {
         if (cubit.state is ImageFinderStateLoaded) {
           return Image.network(
