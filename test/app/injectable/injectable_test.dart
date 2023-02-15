@@ -24,7 +24,6 @@ void main() {
       expect(injectable.isRegistered<LocalImageRepository>(), isTrue);
       expect(injectable.isRegistered<SaveLocalImage>(), isTrue);
       expect(injectable.isRegistered<GetLocalImages>(), isTrue);
-      expect(injectable.isRegistered<ImageFinderCubit>(), isTrue);
     });
   });
 }

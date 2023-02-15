@@ -41,6 +41,5 @@ void setupDependencies() {
     )
     ..registerFactory<GetLocalImages>(
       () => GetLocalImages(injectable.get<LocalImageRepository>()),
-    )
-    ..registerSingleton(ImageFinderCubit());
+    );
 }
