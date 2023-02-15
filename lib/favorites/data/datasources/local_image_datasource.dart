@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:very_good_coffee_app/app/core/preferences_storage.dart';
 import 'package:very_good_coffee_app/image_finder/domain/entities/coffee_image.dart';
 
 abstract class LocalImageDatasource {
@@ -9,12 +10,16 @@ abstract class LocalImageDatasource {
 }
 
 class LocalImageDatasourceImpl implements LocalImageDatasource {
-  const LocalImageDatasourceImpl();
+  const LocalImageDatasourceImpl({
+    required PreferencesStorage preferencesStorage,
+  }) : _preferencesStorage = preferencesStorage;
+
+  final PreferencesStorage _preferencesStorage;
 
   @override
   Future<List<CoffeeImage>> getLocalImages() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedImages = prefs.getStringList('coffee_images');
+    await _preferencesStorage.init();
+    final savedImages = _preferencesStorage.getStringList('coffee_images');
 
     if (savedImages != null) {
       final savedImagesToList = savedImages
@@ -32,8 +37,8 @@ class LocalImageDatasourceImpl implements LocalImageDatasource {
 
   @override
   Future<void> saveLocalImage({required CoffeeImage image}) async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedImages = prefs.getStringList('coffee_images');
+    await _preferencesStorage.init();
+    final savedImages = _preferencesStorage.getStringList('coffee_images');
 
     if (savedImages != null) {
       final savedImagesToList = savedImages
@@ -48,7 +53,7 @@ class LocalImageDatasourceImpl implements LocalImageDatasource {
       final listToSave =
           savedImagesToList.map((item) => jsonEncode(item.toJson())).toList();
 
-      await prefs.setStringList('coffee_images', listToSave);
+      await _preferencesStorage.setStringList('coffee_images', listToSave);
     } else {
       final initialList = <CoffeeImage>[];
       initialList.add(image);
@@ -56,7 +61,7 @@ class LocalImageDatasourceImpl implements LocalImageDatasource {
       final listToSave =
           initialList.map((item) => jsonEncode(item.toJson())).toList();
 
-      await prefs.setStringList(
+      await _preferencesStorage.setStringList(
         'coffee_images',
         listToSave,
       );

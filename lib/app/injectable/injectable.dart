@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:very_good_coffee_app/app/core/preferences_storage.dart';
 import 'package:very_good_coffee_app/app/http_client/dio_client.dart';
 import 'package:very_good_coffee_app/favorites/data/datasources/local_image_datasource.dart';
 import 'package:very_good_coffee_app/favorites/data/repositories/local_image_repository_impl.dart';
@@ -17,6 +18,7 @@ final injectable = GetIt.instance;
 void setupDependencies() {
   injectable
     ..registerFactory<DioClient>(() => DioClient(Dio()))
+    ..registerFactory<PreferencesStorage>(PreferencesStorageImpl.new)
     ..registerFactory<ImageDatasource>(
       () => ImageDatasourceImpl(http: injectable.get<DioClient>()),
     )
@@ -26,7 +28,11 @@ void setupDependencies() {
     ..registerFactory<GetImage>(
       () => GetImage(injectable.get<ImageRepository>()),
     )
-    ..registerFactory<LocalImageDatasource>(LocalImageDatasourceImpl.new)
+    ..registerFactory<LocalImageDatasource>(
+      () => LocalImageDatasourceImpl(
+        preferencesStorage: injectable.get<PreferencesStorage>(),
+      ),
+    )
     ..registerFactory<LocalImageRepository>(
       () => LocalImageRepositoryImpl(injectable.get<LocalImageDatasource>()),
     )
