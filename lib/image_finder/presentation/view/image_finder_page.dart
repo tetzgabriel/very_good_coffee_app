@@ -66,7 +66,7 @@ class ImageSection extends StatelessWidget {
     return SizedBox(
       height: 150,
       width: 150,
-      child: context.select((ImageFinderCubit cubit) {
+      child: context.select((FavoritesCubit cubit) {
         if (cubit.state is ImageFinderStateLoaded) {
           return Image.network(
             (cubit.state as ImageFinderStateLoaded).image.file,
