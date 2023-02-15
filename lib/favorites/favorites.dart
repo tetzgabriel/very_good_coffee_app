@@ -1,2 +1,2 @@
-export 'cubit/favorites_cubit.dart';
-export 'view/favorites_page.dart';
+export 'presentation/cubit/favorites_cubit.dart';
+export 'presentation/view/favorites_page.dart';

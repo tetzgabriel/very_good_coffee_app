@@ -1,2 +1,2 @@
-export 'cubit/image_finder_cubit.dart';
-export 'view/image_finder_page.dart';
+export 'presentation/cubit/image_finder_cubit.dart';
+export 'presentation/view/image_finder_page.dart';
