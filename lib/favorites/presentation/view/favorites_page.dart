@@ -39,18 +39,19 @@ class FavoritesView extends StatelessWidget {
               itemBuilder: (BuildContext context, index) {
                 return CachedNetworkImage(
                   imageUrl:
-                  (cubit.state as FavoritesStateLoaded).images[index].file,
+                      (cubit.state as FavoritesStateLoaded).images[index].file,
                   fit: BoxFit.fitHeight,
                 );
               },
             ),
           );
-
-        } else if (cubit.state is FavoritesStateError) {
-          return Text(l10n.errorText);
-        } else {
-          return const CircularProgressIndicator();
         }
+
+        if (cubit.state is FavoritesStateError) {
+          return Text(l10n.errorText);
+        }
+
+        return const CircularProgressIndicator();
       }),
     );
   }
