@@ -18,8 +18,8 @@ void main() {
   test('Get should return status code 200', () async {
     const url = 'https://httpbin.org/get';
     final httpClient = DioClient(mockDio);
-    final mockResponse =
-        Response<Map<String, dynamic>>(requestOptions: RequestOptions(), statusCode: 200);
+    final mockResponse = Response<Map<String, dynamic>>(
+        requestOptions: RequestOptions(), statusCode: 200);
 
     when(
       () => mockDio.get<Map<String, dynamic>>(

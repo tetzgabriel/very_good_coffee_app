@@ -73,8 +73,7 @@ void main() {
     when(preferencesStorage.init).thenAnswer((_) => Future(() => null));
 
     when(() => preferencesStorage.getStringList('coffee_images')).thenAnswer(
-      (_) =>
-          ['{"file":"https://test.com"}'],
+      (_) => ['{"file":"https://test.com"}'],
     );
 
     when(() => preferencesStorage.setStringList('coffee_images', listToSave))

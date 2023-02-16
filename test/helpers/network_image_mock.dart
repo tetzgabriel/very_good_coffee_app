@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:mocktail/mocktail.dart';
 
 T mockNetworkImage<T>(
-    T Function() body, {
-      List<int> imageBytes = _transparentImage,
-    }) {
+  T Function() body, {
+  List<int> imageBytes = _transparentImage,
+}) {
   return HttpOverrides.runZoned(
     body,
     createHttpClient: (_) => _createHttpClient(imageBytes),
@@ -40,7 +40,7 @@ HttpClient _createHttpClient(List<int> imageBytes) {
   when(() => request.headers).thenReturn(headers);
   when(() => client.getUrl(any())).thenAnswer((_) async => request);
   when(
-        () => response.listen(
+    () => response.listen(
       any(),
       onDone: any(named: 'onDone'),
       onError: any(named: 'onError'),
@@ -48,7 +48,7 @@ HttpClient _createHttpClient(List<int> imageBytes) {
     ),
   ).thenAnswer((invocation) {
     final onData =
-    invocation.positionalArguments.first as void Function(List<int>);
+        invocation.positionalArguments.first as void Function(List<int>);
     return Stream<List<int>>.fromIterable([imageBytes]).listen(onData);
   });
   return client;

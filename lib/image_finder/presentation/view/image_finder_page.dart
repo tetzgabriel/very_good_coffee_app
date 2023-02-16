@@ -42,23 +42,23 @@ class ImageFinderView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () => context.read<ImageFinderCubit>().getImage(),
+                    onPressed: () =>
+                        context.read<ImageFinderCubit>().getImage(),
                     icon: const Icon(Icons.refresh),
                     label: Text(l10n.refreshButtonLabel),
                   ),
                   ElevatedButton.icon(
                     onPressed: () =>
                         context.read<ImageFinderCubit>().saveLocalImage(
-                          image: (context.read<ImageFinderCubit>().state
-                          as ImageFinderStateLoaded)
-                              .image,
-                        ),
+                              image: (context.read<ImageFinderCubit>().state
+                                      as ImageFinderStateLoaded)
+                                  .image,
+                            ),
                     icon: const Icon(Icons.favorite),
                     label: Text(l10n.favoritesButtonLabel),
                   ),
                 ],
               ),
-
               ElevatedButton(
                 onPressed: () => Navigator.push(
                   context,
