@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:very_good_coffee_app/favorites/favorites.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 
 import '../../../helpers/helpers.dart';
@@ -125,6 +126,37 @@ void main() {
           image: CoffeeImageFixture.model,
         ),
       ).called(1);
+    },
+  );
+
+  testWidgets(
+    'Go to favorites button should navigate',
+    (tester) async {
+      final mockFavoritesCubit = injectable.get<FavoritesCubit>();
+
+      final favoritesStateLoaded = FavoritesStateLoaded(
+        images: CoffeeImageFixture.list,
+      );
+
+      whenListen(
+        mockFavoritesCubit,
+        Stream.fromIterable([favoritesStateLoaded]),
+      );
+
+      when(() => mockFavoritesCubit.state).thenReturn(favoritesStateLoaded);
+
+      when(mockFavoritesCubit.getLocalImages).thenAnswer((_) async {});
+
+      await mockNetworkImage(
+        () async => tester.pumpApp(
+          const ImageFinderPage(),
+        ),
+      );
+
+      await tester.tap(find.text('Go to favorites'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(FavoritesPage), findsOneWidget);
     },
   );
 }
