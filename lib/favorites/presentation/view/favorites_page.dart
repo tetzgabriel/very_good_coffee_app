@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:very_good_coffee_app/app/injectable/injectable.dart';
 import 'package:very_good_coffee_app/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
 
@@ -10,7 +11,7 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => FavoritesCubit()..getLocalImages(),
+      create: (_) => injectable.get<FavoritesCubit>()..getLocalImages(),
       child: const FavoritesView(),
     );
   }
@@ -46,7 +47,7 @@ class FavoritesView extends StatelessWidget {
           );
 
         } else if (cubit.state is FavoritesStateError) {
-          return const Text('Error');
+          return Text(l10n.errorText);
         } else {
           return const CircularProgressIndicator();
         }

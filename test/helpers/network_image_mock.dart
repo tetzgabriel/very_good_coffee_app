@@ -2,41 +2,6 @@ import 'dart:async';
 import 'dart:io';
 import 'package:mocktail/mocktail.dart';
 
-/// Utility method that allows you to perform a widget test when you pumped a
-/// widget that contains an `Image.network`.
-///
-/// For example, if you have the following app:
-///
-/// ```dart
-/// class FakeApp extends StatelessWidget {
-///   @override
-///   Widget build(BuildContext context) {
-///     return MaterialApp(
-///       home: Scaffold(
-///         body: Center(
-///           child: Image.network(
-///             'https://picsum.photos/200',
-///           ),
-///         ),
-///       ),
-///     );
-///   }
-/// }
-/// ```
-///
-/// You can test it like this:
-///
-/// ```dart
-/// void main() {
-///   testWidgets('can use mocktail for network images', (tester) async {
-///     await mockNetworkImage(
-///       () async => await tester.pumpWidget(FakeApp()),
-///     );
-///
-///     expect(find.byType(Image), findsOneWidget);
-///   });
-/// }
-/// ```
 T mockNetworkImage<T>(
     T Function() body, {
       List<int> imageBytes = _transparentImage,
@@ -66,7 +31,7 @@ HttpClient _createHttpClient(List<int> imageBytes) {
   final response = _MockHttpClientResponse();
   final headers = _MockHttpHeaders();
 
-  when(() => request.close()).thenAnswer((_) async => response);
+  when(request.close).thenAnswer((_) async => response);
   when(() => response.compressionState).thenReturn(
     HttpClientResponseCompressionState.notCompressed,
   );

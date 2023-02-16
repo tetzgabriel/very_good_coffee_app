@@ -13,6 +13,8 @@ import 'package:very_good_coffee_app/image_finder/domain/usecases/get_image.dart
 import 'package:very_good_coffee_app/image_finder/domain/usecases/save_local_image.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 
+import '../../favorites/presentation/cubit/favorites_cubit.dart';
+
 final injectable = GetIt.instance;
 
 void setupDependencies() {
@@ -46,6 +48,11 @@ void setupDependencies() {
       () => ImageFinderCubit(
         getImage: injectable.get<GetImage>(),
         saveLocalImage: injectable.get<SaveLocalImage>(),
+      ),
+    )
+    ..registerLazySingleton<FavoritesCubit>(
+      () => FavoritesCubit(
+        getLocalImages: injectable.get<GetLocalImages>(),
       ),
     );
 }

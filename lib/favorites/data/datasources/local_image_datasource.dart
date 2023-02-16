@@ -21,14 +21,7 @@ class LocalImageDatasourceImpl implements LocalImageDatasource {
     final savedImages = _preferencesStorage.getStringList('coffee_images');
 
     if (savedImages != null) {
-      final savedImagesToList = savedImages
-          .map(
-            (item) =>
-                CoffeeImage.fromJson(json.decode(item) as Map<String, dynamic>),
-          )
-          .toList();
-
-      return savedImagesToList;
+      return preferencesListToList(savedImages);
     }
 
     return [];
@@ -63,5 +56,15 @@ class LocalImageDatasourceImpl implements LocalImageDatasource {
         listToSave,
       );
     }
+  }
+
+  List<CoffeeImage> preferencesListToList(List<String> savedImages) {
+    final savedImagesToList = savedImages
+        .map(
+          (item) =>
+          CoffeeImage.fromJson(json.decode(item) as Map<String, dynamic>),
+    )
+        .toList();
+    return savedImagesToList;
   }
 }
