@@ -94,11 +94,13 @@ class ImageSection extends StatelessWidget {
             (cubit.state as ImageFinderStateLoaded).image.file,
             fit: BoxFit.fitHeight,
           );
-        } else if (cubit.state is ImageFinderStateError) {
-          return Center(child: Text(l10n.errorText));
-        } else {
-          return const CircularProgressIndicator();
         }
+
+        if (cubit.state is ImageFinderStateError) {
+          return Center(child: Text(l10n.errorText));
+        }
+
+        return const CircularProgressIndicator();
       }),
     );
   }

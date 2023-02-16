@@ -43,13 +43,13 @@ void setupDependencies() {
     ..registerFactory<GetLocalImages>(
       () => GetLocalImages(injectable.get<LocalImageRepository>()),
     )
-    ..registerLazySingleton<ImageFinderCubit>(
+    ..registerFactory<ImageFinderCubit>(
       () => ImageFinderCubit(
         getImage: injectable.get<GetImage>(),
         saveLocalImage: injectable.get<SaveLocalImage>(),
       ),
     )
-    ..registerLazySingleton<FavoritesCubit>(
+    ..registerFactory<FavoritesCubit>(
       () => FavoritesCubit(
         getLocalImages: injectable.get<GetLocalImages>(),
       ),
