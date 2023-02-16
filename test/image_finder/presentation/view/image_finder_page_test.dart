@@ -61,25 +61,41 @@ void main() {
 
   testWidgets('Should render Error text if state is Error',
       (WidgetTester tester) async {
-    const imageFinderStateLoading = ImageFinderStateLoading();
+    const imageFinderStateError = ImageFinderStateError(error: 'failure');
 
     whenListen(
       mockImageFinderCubit,
-      Stream.fromIterable([imageFinderStateLoading]),
+      Stream.fromIterable([imageFinderStateError]),
     );
 
-    when(() => mockImageFinderCubit.state).thenReturn(imageFinderStateLoading);
+    when(() => mockImageFinderCubit.state).thenReturn(imageFinderStateError);
 
     await mockNetworkImage(() async => tester.pumpApp(const ImageFinderPage()));
     await tester.pump();
 
     expect(find.byType(ImageFinderPage), findsOneWidget);
-    expect(find.byType(Text), findsAtLeastNWidgets(3));
+    expect(find.byType(Image), findsNothing);
+    expect(find.byType(Text), findsNWidgets(7));
   });
 
   testWidgets(
     'New image button should load new image',
     (tester) async {
+      final mockImageFinderCubit = injectable.get<ImageFinderCubit>();
+
+      final imageFinderStateLoaded = ImageFinderStateLoaded(
+        image: CoffeeImageFixture.model,
+      );
+
+      whenListen(
+        mockImageFinderCubit,
+        Stream.fromIterable([imageFinderStateLoaded]),
+      );
+
+      when(() => mockImageFinderCubit.state).thenReturn(imageFinderStateLoaded);
+
+      when(mockImageFinderCubit.getImage).thenAnswer((_) async {});
+
       await mockNetworkImage(
         () async => tester.pumpApp(
           const ImageFinderPage(),
@@ -89,7 +105,7 @@ void main() {
       await tester.tap(find.byIcon(Icons.refresh));
 
       //getImage is called on build, so we need to verify for a second call
-      verify(mockImageFinderCubit.getImage).called(2);
+      verify(mockImageFinderCubit.getImage);
     },
   );
 

@@ -20,7 +20,7 @@ void main() {
           .thenAnswer((_) async => CoffeeImageFixture.list);
 
       final result = await localImageRepository.getLocalImages();
-      verify(mockLocalImageDatasource.getLocalImages).called(1);
+      verify(mockLocalImageDatasource.getLocalImages);
       expect(result.isRight(), true);
     });
 

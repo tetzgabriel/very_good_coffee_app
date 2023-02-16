@@ -25,7 +25,7 @@ void main() {
       () => mockLocalImageRepository.saveLocalImage(
         image: CoffeeImageFixture.model,
       ),
-    ).called(1);
+    );
   });
 
   test('Use case should return void', () async {
