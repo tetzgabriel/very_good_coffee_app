@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:very_good_coffee_app/app/injectable/injectable.dart';
 import 'package:very_good_coffee_app/favorites/favorites.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
@@ -10,7 +11,7 @@ class ImageFinderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => ImageFinderCubit()..getImage(),
+      create: (_) => injectable.get<ImageFinderCubit>()..getImage(),
       child: const ImageFinderView(),
     );
   }

@@ -11,6 +11,7 @@ import 'package:very_good_coffee_app/image_finder/data/repositories/image_reposi
 import 'package:very_good_coffee_app/image_finder/domain/repositories/image_repository.dart';
 import 'package:very_good_coffee_app/image_finder/domain/usecases/get_image.dart';
 import 'package:very_good_coffee_app/image_finder/domain/usecases/save_local_image.dart';
+import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 
 final injectable = GetIt.instance;
 
@@ -40,5 +41,11 @@ void setupDependencies() {
     )
     ..registerFactory<GetLocalImages>(
       () => GetLocalImages(injectable.get<LocalImageRepository>()),
+    )
+    ..registerLazySingleton<ImageFinderCubit>(
+      () => ImageFinderCubit(
+        getImage: injectable.get<GetImage>(),
+        saveLocalImage: injectable.get<SaveLocalImage>(),
+      ),
     );
 }

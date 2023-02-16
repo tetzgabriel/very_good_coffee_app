@@ -27,11 +27,11 @@ class FavoritesView extends StatelessWidget {
       body: context.select((FavoritesCubit cubit) {
         if (cubit.state is FavoritesStateLoaded) {
           return Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(10),
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
-                crossAxisSpacing: 20,
+                crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
               itemCount: (cubit.state as FavoritesStateLoaded).images.length,
