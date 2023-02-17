@@ -182,7 +182,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
-### Already supported languages
+### Already supported languages 📖
 
 For now, the strings used in this app are available both in English and Spanish.
 
