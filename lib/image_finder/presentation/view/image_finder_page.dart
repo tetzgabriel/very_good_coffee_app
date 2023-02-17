@@ -90,9 +90,12 @@ class ImageSection extends StatelessWidget {
       width: 250,
       child: context.select((ImageFinderCubit cubit) {
         if (cubit.state is ImageFinderStateLoaded) {
-          return Image.network(
-            (cubit.state as ImageFinderStateLoaded).image.file,
-            fit: BoxFit.fitHeight,
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              (cubit.state as ImageFinderStateLoaded).image.file,
+              fit: BoxFit.fitHeight,
+            ),
           );
         }
 

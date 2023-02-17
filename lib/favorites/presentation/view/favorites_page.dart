@@ -37,10 +37,14 @@ class FavoritesView extends StatelessWidget {
               ),
               itemCount: (cubit.state as FavoritesStateLoaded).images.length,
               itemBuilder: (BuildContext context, index) {
-                return CachedNetworkImage(
-                  imageUrl:
-                      (cubit.state as FavoritesStateLoaded).images[index].file,
-                  fit: BoxFit.fitHeight,
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: CachedNetworkImage(
+                    imageUrl: (cubit.state as FavoritesStateLoaded)
+                        .images[index]
+                        .file,
+                    fit: BoxFit.fitHeight,
+                  ),
                 );
               },
             ),

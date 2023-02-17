@@ -31,7 +31,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Very Good Coffee App works on iOS, Android, Web, and Windows._
+_\*Very Good Coffee App works on iOS and Android._
 
 ---
 
@@ -153,6 +153,15 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
     }
 }
 ```
+
+### Already supported languages
+
+For now, the strings used in this app are available both in English and Spanish.
+
+### Github actions
+
+Initially, this project used VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1 as a github action<br>
+
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
