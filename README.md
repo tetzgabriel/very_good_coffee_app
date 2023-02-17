@@ -86,10 +86,10 @@ The folder structure follows the example:
 ---
 
 ## Using the app 📱
-To generate a coffee image all you have to do is open the app. 
-If this image is not a very good coffee image, you can tap the 'Try new image' button and a new one will be generated
-If this is a very good coffee image, you can tap the 'Add to favorites' button and it will be saved on the favorites page.
-To see all your favorites coffee images, you can tap the 'Go to favorites' button and a gallery like page will show you all the very good coffee images you saved.
+1. To generate a coffee image all you have to do is open the app. <br>
+2. If this image is not a very good coffee image, you can tap the  `Try new image` button and a new one will be generated <br>
+3. If this is a very good coffee image, you can tap the `Add to favorites` button and it will be saved on the favorites page. <br>
+4. To see all your favorites coffee images, you can tap the `Go to favorites` button and a gallery like page will show you all the very good coffee images you saved.
 
 ## Working with Translations 🌐
 
