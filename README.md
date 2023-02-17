@@ -57,8 +57,8 @@ $ open coverage/index.html
 
 ## Github actions ⚙️
 
-Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action<br>
-but I kept encountering problems with the unit tests of GetIt in the action. So, as a temporary measure I changed to `subosito/flutter-action@v2`
+Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action,
+but I kept encountering problems with the unit tests of GetIt while running them with the action. So, as a temporary measure I changed it to use `subosito/flutter-action@v2`.
 
 ---
 
@@ -82,6 +82,14 @@ The folder structure follows the example:
 │   │   │   ├── view
 │   │   │   └── {feature}.dart
 ```
+
+---
+
+## Using the app 📱
+1. To generate a coffee image all you have to do is open the app. <br>
+2. If this image is not a very good coffee image, you can tap the  `Try new image` button and a new one will be generated <br>
+3. If this is a very good coffee image, you can tap the `Add to favorites` button and it will be saved on the favorites page. <br>
+4. To see all your favorites coffee images, you can tap the `Go to favorites` button and a gallery like page will show you all the very good coffee images you saved.
 
 ## Working with Translations 🌐
 
@@ -182,9 +190,9 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 }
 ```
 
-### Already supported languages
+### Already supported languages 📖
 
-For now, the strings used in this app are available both in English and Spanish.
+The strings used in this app are available both in English and Spanish.
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
