@@ -57,7 +57,7 @@ $ open coverage/index.html
 
 ## Github actions ⚙️
 
-Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action<br>,
+Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action,
 but I kept encountering problems with the unit tests of GetIt while running them with the action. So, as a temporary measure I changed it to use `subosito/flutter-action@v2`.
 
 ---
