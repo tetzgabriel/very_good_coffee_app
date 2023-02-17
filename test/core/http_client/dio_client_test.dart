@@ -5,8 +5,6 @@ import 'package:very_good_coffee_app/core/http_client/dio_client.dart';
 
 import '../../injectable/injectable.dart';
 
-
-
 class DioMock extends Mock implements Dio {}
 
 void main() {
