@@ -160,7 +160,8 @@ For now, the strings used in this app are available both in English and Spanish.
 
 ### Github actions
 
-Initially, this project used VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1 as a github action<br>
+Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action<br>
+but I kept encountering problems with the unit tests of GetIt in the action. So, as a temporary measure I changed to `subosito/flutter-action@v2` 
 
 
 [coverage_badge]: coverage_badge.svg
