@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:very_good_coffee_app/image_finder/data/datasources/image_datasource.dart';
 import 'package:very_good_coffee_app/image_finder/domain/entities/coffee_image.dart';
 
-import '../../../app/http_client/mock_dio_client.dart';
+import '../../../core/http_client/mock_dio_client.dart';
 import '../../../mocks/coffee_image_fixture.dart';
 
 void main() {

@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:very_good_coffee_app/favorites/data/datasources/local_image_datasource.dart';
 import 'package:very_good_coffee_app/image_finder/domain/entities/coffee_image.dart';
 
-import '../../../app/core/mock_preferences_storage.dart';
+import '../../../core/storage/mock_preferences_storage.dart';
 import '../../../mocks/coffee_image_fixture.dart';
 
 void main() {

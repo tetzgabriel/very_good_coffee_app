@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:very_good_coffee_app/app/injectable/injectable.dart';
+import 'package:very_good_coffee_app/core/injectable/injectable.dart';
 import 'package:very_good_coffee_app/image_finder/domain/entities/coffee_image.dart';
 import 'package:very_good_coffee_app/image_finder/domain/usecases/get_image.dart';
 import 'package:very_good_coffee_app/image_finder/domain/usecases/save_local_image.dart';

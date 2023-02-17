@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:very_good_coffee_app/app/core/preferences_storage.dart';
-import 'package:very_good_coffee_app/app/http_client/dio_client.dart';
+import 'package:very_good_coffee_app/core/http_client/dio_client.dart';
+import 'package:very_good_coffee_app/core/storage/preferences_storage.dart';
 import 'package:very_good_coffee_app/favorites/data/datasources/local_image_datasource.dart';
 import 'package:very_good_coffee_app/favorites/data/repositories/local_image_repository_impl.dart';
 import 'package:very_good_coffee_app/favorites/domain/repositories/local_image_repository.dart';

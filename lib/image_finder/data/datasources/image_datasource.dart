@@ -1,5 +1,5 @@
-import 'package:very_good_coffee_app/app/http_client/dio_client.dart';
-import 'package:very_good_coffee_app/app/http_client/http_client.dart';
+import 'package:very_good_coffee_app/core/http_client/dio_client.dart';
+import 'package:very_good_coffee_app/core/http_client/http_client.dart';
 import 'package:very_good_coffee_app/image_finder/domain/entities/coffee_image.dart';
 
 abstract class ImageDatasource {

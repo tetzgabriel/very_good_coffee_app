@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_coffee_app/app/injectable/injectable.dart';
+import 'package:very_good_coffee_app/core/injectable/injectable.dart';
 import 'package:very_good_coffee_app/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
 

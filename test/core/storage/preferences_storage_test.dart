@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:very_good_coffee_app/app/core/preferences_storage.dart';
+import 'package:very_good_coffee_app/core/storage/preferences_storage.dart';
 
 void main() {
   late PreferencesStorageImpl sut;

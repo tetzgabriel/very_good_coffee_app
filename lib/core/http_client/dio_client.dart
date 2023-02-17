@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:very_good_coffee_app/app/http_client/http_client.dart';
+import 'package:very_good_coffee_app/core/http_client/http_client.dart';
 
 class DioClient implements HttpClient<Response<dynamic>> {
   const DioClient(this.dio);

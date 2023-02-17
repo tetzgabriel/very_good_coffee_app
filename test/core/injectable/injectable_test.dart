@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:very_good_coffee_app/app/core/preferences_storage.dart';
-import 'package:very_good_coffee_app/app/http_client/dio_client.dart';
-import 'package:very_good_coffee_app/app/injectable/injectable.dart';
+import 'package:very_good_coffee_app/core/http_client/dio_client.dart';
+import 'package:very_good_coffee_app/core/injectable/injectable.dart';
+import 'package:very_good_coffee_app/core/storage/preferences_storage.dart';
 import 'package:very_good_coffee_app/favorites/data/datasources/local_image_datasource.dart';
 import 'package:very_good_coffee_app/favorites/domain/repositories/local_image_repository.dart';
 import 'package:very_good_coffee_app/favorites/domain/usecases/get_local_images.dart';

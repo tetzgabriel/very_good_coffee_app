@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:very_good_coffee_app/app/core/preferences_storage.dart';
+import 'package:very_good_coffee_app/core/storage/preferences_storage.dart';
 import 'package:very_good_coffee_app/image_finder/domain/entities/coffee_image.dart';
 
 abstract class LocalImageDatasource {

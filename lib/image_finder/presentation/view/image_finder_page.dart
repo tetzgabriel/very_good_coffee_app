@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_coffee_app/app/injectable/injectable.dart';
+import 'package:very_good_coffee_app/core/injectable/injectable.dart';
 import 'package:very_good_coffee_app/favorites/favorites.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 import 'package:very_good_coffee_app/image_finder/presentation/bloc/image_finder_bloc.dart';
@@ -73,13 +73,20 @@ class ImageFinderView extends StatelessWidget {
                     style: primaryButtonStyle,
                   ),
                   ElevatedButton.icon(
-                    onPressed: () => context.read<ImageFinderBloc>().add(
-                          SaveLocalImageEvent(
-                            (context.read<ImageFinderBloc>().state
-                                    as ImageFinderStateLoaded)
-                                .image,
-                          ),
-                        ),
+                    onPressed: () {
+                      if (context.read<ImageFinderBloc>().state
+                          is ImageFinderStateLoaded) {
+                        return context.read<ImageFinderBloc>().add(
+                              SaveLocalImageEvent(
+                                (context.read<ImageFinderBloc>().state
+                                        as ImageFinderStateLoaded)
+                                    .image,
+                              ),
+                            );
+                      }
+
+                      return;
+                    },
                     icon: const Icon(Icons.favorite),
                     label: Text(l10n.favoritesButtonLabel),
                     style: primaryButtonStyle,

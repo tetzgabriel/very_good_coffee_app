@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:very_good_coffee_app/app/http_client/dio_client.dart';
+import 'package:very_good_coffee_app/core/http_client/dio_client.dart';
 
 import '../../injectable/injectable.dart';
+
+
 
 class DioMock extends Mock implements Dio {}
 
