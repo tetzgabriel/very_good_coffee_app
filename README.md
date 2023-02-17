@@ -78,7 +78,7 @@ The folder structure follows the example:
 │   │   │   ├── repositories
 │   │   │   └── usecases
 │   │   └── presentation
-│   │   │   ├── cubit
+│   │   │   ├── bloc
 │   │   │   ├── view
 │   │   │   └── {feature}.dart
 ```
