@@ -91,6 +91,10 @@ The folder structure follows the example:
 3. If this is a very good coffee image, you can tap the `Add to favorites` button and it will be saved on the favorites page. <br>
 4. To see all your favorites coffee images, you can tap the `Go to favorites` button and a gallery like page will show you all the very good coffee images you saved.
 
+|Home page|Favorites page|
+|---|---|
+|<img width="436" alt="Captura de Tela 2023-02-16 às 23 55 47" src="https://user-images.githubusercontent.com/45688582/219538251-2169805a-d548-4c5d-a079-6d28de92fbaf.png">|<img width="438" alt="Captura de Tela 2023-02-16 às 23 55 34" src="https://user-images.githubusercontent.com/45688582/219538301-d7de081f-887d-4a3b-bf0c-290752d401ba.png">|
+
 ## Working with Translations 🌐
 
 This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
