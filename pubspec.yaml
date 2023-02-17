@@ -33,3 +33,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+fonts:
+  - family: Poppins
+    fonts:
+      - asset: assets/fonts/Poppins-Bold.ttf
+      - asset: assets/fonts/Poppins-Medium.ttf

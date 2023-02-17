@@ -23,14 +23,35 @@ class ImageFinderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+    const mediumTextStyle = TextStyle(
+      fontWeight: FontWeight.w500,
+    );
+    final primaryButtonStyle = ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(const Color(0xFF2A48DE)),
+    );
+    final secondaryButtonStyle = ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(const Color(0xFFFF4F9D)),
+    );
+
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.appBarTitle)),
+      appBar: AppBar(
+        title: Text(
+          l10n.appBarTitle,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(l10n.imageFinderTitle),
-              Text(l10n.imageFinderSubtitle),
+              Text(
+                l10n.imageFinderTitle,
+                style: mediumTextStyle,
+              ),
+              Text(
+                l10n.imageFinderSubtitle,
+                style: mediumTextStyle,
+              ),
               const SizedBox(
                 height: 24,
               ),
@@ -46,6 +67,7 @@ class ImageFinderView extends StatelessWidget {
                         context.read<ImageFinderCubit>().getImage(),
                     icon: const Icon(Icons.refresh),
                     label: Text(l10n.refreshButtonLabel),
+                    style: primaryButtonStyle,
                   ),
                   ElevatedButton.icon(
                     onPressed: () =>
@@ -56,6 +78,7 @@ class ImageFinderView extends StatelessWidget {
                             ),
                     icon: const Icon(Icons.favorite),
                     label: Text(l10n.favoritesButtonLabel),
+                    style: primaryButtonStyle,
                   ),
                 ],
               ),
@@ -66,6 +89,7 @@ class ImageFinderView extends StatelessWidget {
                     builder: (context) => const FavoritesPage(),
                   ),
                 ),
+                style: secondaryButtonStyle,
                 child: Text(l10n.navigateToFavoritesButtonLabel),
               )
             ],

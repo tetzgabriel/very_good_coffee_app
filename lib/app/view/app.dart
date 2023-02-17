@@ -9,6 +9,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Poppins',
         appBarTheme: const AppBarTheme(color: Color(0xFF2A48DE)),
         colorScheme: ColorScheme.fromSwatch(
           accentColor: const Color(0xFF2A48DE),

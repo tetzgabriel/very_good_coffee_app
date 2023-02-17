@@ -16,7 +16,7 @@
   "@navigateToFavoritesButtonLabel": {
     "description": "Text shown in the navigate to favorites button"
   },
-  "imageFinderTitle": "Here's your coffee",
+  "imageFinderTitle": "Here's your coffee ☕️",
   "@imageFinderTitle": {
     "description": "Text shown in the image finder top part"
   },
