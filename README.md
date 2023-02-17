@@ -60,6 +60,8 @@ $ open coverage/index.html
 Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action<br>
 but I kept encountering problems with the unit tests of GetIt in the action. So, as a temporary measure I changed to `subosito/flutter-action@v2`
 
+---
+
 ## Architecture 📐
 
 This app uses the layered architecture from Very Good CLI by default.<br> In order to develop the functions needed for the app
