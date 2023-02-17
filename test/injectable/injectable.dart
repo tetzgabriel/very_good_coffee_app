@@ -5,7 +5,7 @@ import 'package:very_good_coffee_app/image_finder/domain/usecases/get_image.dart
 import 'package:very_good_coffee_app/image_finder/domain/usecases/save_local_image.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
 
-import '../mocks/mock_favorites_cubit.dart';
+import '../mocks/mock_favorites_bloc.dart';
 import '../mocks/mock_get_image.dart';
 import '../mocks/mock_get_local_images.dart';
 import '../mocks/mock_image_finder_cubit.dart';
@@ -18,6 +18,6 @@ void setupTestServices() {
     ..registerSingleton<GetImage>(MockGetImage())
     ..registerSingleton<SaveLocalImage>(MockSaveLocalImage())
     ..registerSingleton<GetLocalImages>(MockGetLocalImages())
-    ..registerSingleton<FavoritesCubit>(MockFavoritesCubit())
-    ..registerSingleton<ImageFinderCubit>(MockImageFinderCubit());
+    ..registerSingleton<FavoritesBloc>(MockFavoritesBloc())
+    ..registerSingleton<ImageFinderBloc>(MockImageFinderBloc());
 }

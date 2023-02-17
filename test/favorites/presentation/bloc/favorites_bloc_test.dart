@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:very_good_coffee_app/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:very_good_coffee_app/favorites/favorites.dart';
 
 import '../../../injectable/injectable.dart';
 import '../../../mocks/coffee_image_fixture.dart';
@@ -13,10 +13,10 @@ void main() {
 
   final mockGetLocalImages = MockGetLocalImages();
 
-  late FavoritesCubit sut;
+  late FavoritesBloc sut;
 
   setUp(() {
-    sut = FavoritesCubit(
+    sut = FavoritesBloc(
       getLocalImages: mockGetLocalImages,
     );
 
@@ -27,10 +27,10 @@ void main() {
     );
   });
 
-  blocTest<FavoritesCubit, FavoritesState>(
+  blocTest<FavoritesBloc, FavoritesState>(
     'Emits FavoritesStateLoaded when GetLocalImages succeeds',
     build: () => sut,
-    act: (controller) => sut.getLocalImages(),
+    act: (controller) => sut.add(const GetLocalImagesEvent()),
     expect: () => [
       const FavoritesStateLoading(),
       FavoritesStateLoaded(images: CoffeeImageFixture.list)
@@ -40,7 +40,7 @@ void main() {
     },
   );
 
-  blocTest<FavoritesCubit, FavoritesState>(
+  blocTest<FavoritesBloc, FavoritesState>(
     'Emits FavoritesStateError when GetLocalImages fails',
     build: () {
       when(mockGetLocalImages.call).thenAnswer(
@@ -51,7 +51,7 @@ void main() {
 
       return sut;
     },
-    act: (controller) => sut.getLocalImages(),
+    act: (controller) => sut.add(const GetLocalImagesEvent()),
     expect: () => [
       const FavoritesStateLoading(),
       const FavoritesStateError(error: 'failure')

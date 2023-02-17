@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_coffee_app/app/injectable/injectable.dart';
-import 'package:very_good_coffee_app/favorites/presentation/cubit/favorites_cubit.dart';
+import 'package:very_good_coffee_app/favorites/presentation/bloc/favorites_bloc.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -11,7 +11,10 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => injectable.get<FavoritesCubit>()..getLocalImages(),
+      create: (_) => injectable.get<FavoritesBloc>()
+        ..add(
+          const GetLocalImagesEvent(),
+        ),
       child: const FavoritesView(),
     );
   }
@@ -25,8 +28,8 @@ class FavoritesView extends StatelessWidget {
     final l10n = context.l10n;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.appBarTitle)),
-      body: context.select((FavoritesCubit cubit) {
-        if (cubit.state is FavoritesStateLoaded) {
+      body: context.select((FavoritesBloc bloc) {
+        if (bloc.state is FavoritesStateLoaded) {
           return Padding(
             padding: const EdgeInsets.all(10),
             child: GridView.builder(
@@ -35,14 +38,13 @@ class FavoritesView extends StatelessWidget {
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
               ),
-              itemCount: (cubit.state as FavoritesStateLoaded).images.length,
+              itemCount: (bloc.state as FavoritesStateLoaded).images.length,
               itemBuilder: (BuildContext context, index) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: CachedNetworkImage(
-                    imageUrl: (cubit.state as FavoritesStateLoaded)
-                        .images[index]
-                        .file,
+                    imageUrl:
+                        (bloc.state as FavoritesStateLoaded).images[index].file,
                     fit: BoxFit.fitHeight,
                   ),
                 );
@@ -51,7 +53,7 @@ class FavoritesView extends StatelessWidget {
           );
         }
 
-        if (cubit.state is FavoritesStateError) {
+        if (bloc.state is FavoritesStateError) {
           return Text(l10n.errorText);
         }
 

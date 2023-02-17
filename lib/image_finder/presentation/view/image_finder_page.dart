@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_coffee_app/app/injectable/injectable.dart';
 import 'package:very_good_coffee_app/favorites/favorites.dart';
 import 'package:very_good_coffee_app/image_finder/image_finder.dart';
+import 'package:very_good_coffee_app/image_finder/presentation/bloc/image_finder_bloc.dart';
 import 'package:very_good_coffee_app/l10n/l10n.dart';
 
 class ImageFinderPage extends StatelessWidget {
@@ -11,7 +12,8 @@ class ImageFinderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => injectable.get<ImageFinderCubit>()..getImage(),
+      create: (_) =>
+          injectable.get<ImageFinderBloc>()..add(const GetImageEvent()),
       child: const ImageFinderView(),
     );
   }
@@ -63,19 +65,21 @@ class ImageFinderView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton.icon(
-                    onPressed: () =>
-                        context.read<ImageFinderCubit>().getImage(),
+                    onPressed: () => context
+                        .read<ImageFinderBloc>()
+                        .add(const GetImageEvent()),
                     icon: const Icon(Icons.refresh),
                     label: Text(l10n.refreshButtonLabel),
                     style: primaryButtonStyle,
                   ),
                   ElevatedButton.icon(
-                    onPressed: () =>
-                        context.read<ImageFinderCubit>().saveLocalImage(
-                              image: (context.read<ImageFinderCubit>().state
-                                      as ImageFinderStateLoaded)
-                                  .image,
-                            ),
+                    onPressed: () => context.read<ImageFinderBloc>().add(
+                          SaveLocalImageEvent(
+                            (context.read<ImageFinderBloc>().state
+                                    as ImageFinderStateLoaded)
+                                .image,
+                          ),
+                        ),
                     icon: const Icon(Icons.favorite),
                     label: Text(l10n.favoritesButtonLabel),
                     style: primaryButtonStyle,
@@ -112,18 +116,18 @@ class ImageSection extends StatelessWidget {
     return SizedBox(
       height: 250,
       width: 250,
-      child: context.select((ImageFinderCubit cubit) {
-        if (cubit.state is ImageFinderStateLoaded) {
+      child: context.select((ImageFinderBloc bloc) {
+        if (bloc.state is ImageFinderStateLoaded) {
           return ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.network(
-              (cubit.state as ImageFinderStateLoaded).image.file,
+              (bloc.state as ImageFinderStateLoaded).image.file,
               fit: BoxFit.fitHeight,
             ),
           );
         }
 
-        if (cubit.state is ImageFinderStateError) {
+        if (bloc.state is ImageFinderStateError) {
           return Center(child: Text(l10n.errorText));
         }
 

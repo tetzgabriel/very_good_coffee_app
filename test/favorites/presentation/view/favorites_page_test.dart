@@ -11,7 +11,7 @@ import '../../../mocks/coffee_image_fixture.dart';
 void main() {
   setupTestServices();
 
-  final mockFavoritesCubit = injectable.get<FavoritesCubit>();
+  final mockFavoritesBloc = injectable.get<FavoritesBloc>();
 
   setUp(() {
     final favoritesStateLoaded = FavoritesStateLoaded(
@@ -19,13 +19,14 @@ void main() {
     );
 
     whenListen(
-      mockFavoritesCubit,
+      mockFavoritesBloc,
       Stream.fromIterable([favoritesStateLoaded]),
     );
 
-    when(() => mockFavoritesCubit.state).thenReturn(favoritesStateLoaded);
+    when(() => mockFavoritesBloc.state).thenReturn(favoritesStateLoaded);
 
-    when(mockFavoritesCubit.getLocalImages).thenAnswer((_) async {});
+    when(() => mockFavoritesBloc.add(const GetLocalImagesEvent()))
+        .thenAnswer((_) async {});
   });
 
   testWidgets('Should render Favorites Page with a grid view',
@@ -42,11 +43,11 @@ void main() {
     const favoritesStateLoading = FavoritesStateLoading();
 
     whenListen(
-      mockFavoritesCubit,
+      mockFavoritesBloc,
       Stream.fromIterable([favoritesStateLoading]),
     );
 
-    when(() => mockFavoritesCubit.state).thenReturn(favoritesStateLoading);
+    when(() => mockFavoritesBloc.state).thenReturn(favoritesStateLoading);
 
     await tester.pumpApp(const FavoritesPage());
     await tester.pump();
@@ -60,11 +61,11 @@ void main() {
     const favoritesStateLoading = FavoritesStateLoading();
 
     whenListen(
-      mockFavoritesCubit,
+      mockFavoritesBloc,
       Stream.fromIterable([favoritesStateLoading]),
     );
 
-    when(() => mockFavoritesCubit.state).thenReturn(favoritesStateLoading);
+    when(() => mockFavoritesBloc.state).thenReturn(favoritesStateLoading);
 
     await tester.pumpApp(const FavoritesPage());
     await tester.pump();

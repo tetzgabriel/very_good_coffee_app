@@ -1,10 +1,13 @@
-part of 'image_finder_cubit.dart';
+part of 'image_finder_bloc.dart';
 
-class ImageFinderState extends Equatable {
+@immutable
+abstract class ImageFinderState extends Equatable {
   const ImageFinderState();
+}
 
+class ImageFinderInitial extends ImageFinderState {
   @override
-  List<dynamic> get props => [];
+  List<Object?> get props => [];
 }
 
 class ImageFinderStateError extends ImageFinderState {

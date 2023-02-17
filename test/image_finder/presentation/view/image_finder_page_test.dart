@@ -12,7 +12,7 @@ import '../../../mocks/coffee_image_fixture.dart';
 void main() {
   setupTestServices();
 
-  final mockImageFinderCubit = injectable.get<ImageFinderCubit>();
+  final mockImageFinderBloc = injectable.get<ImageFinderBloc>();
 
   setUp(() {
     final imageFinderStateLoaded = ImageFinderStateLoaded(
@@ -20,16 +20,17 @@ void main() {
     );
 
     whenListen(
-      mockImageFinderCubit,
+      mockImageFinderBloc,
       Stream.fromIterable([imageFinderStateLoaded]),
     );
 
-    when(() => mockImageFinderCubit.state).thenReturn(imageFinderStateLoaded);
+    when(() => mockImageFinderBloc.state).thenReturn(imageFinderStateLoaded);
 
-    when(mockImageFinderCubit.getImage).thenAnswer((_) async {});
+    when(() => mockImageFinderBloc.add(const GetImageEvent()))
+        .thenAnswer((_) async {});
     when(
-      () => mockImageFinderCubit.saveLocalImage(
-        image: CoffeeImageFixture.model,
+      () => mockImageFinderBloc.add(
+        SaveLocalImageEvent(CoffeeImageFixture.model),
       ),
     ).thenAnswer((_) async {});
   });
@@ -47,11 +48,11 @@ void main() {
     const imageFinderStateLoading = ImageFinderStateLoading();
 
     whenListen(
-      mockImageFinderCubit,
+      mockImageFinderBloc,
       Stream.fromIterable([imageFinderStateLoading]),
     );
 
-    when(() => mockImageFinderCubit.state).thenReturn(imageFinderStateLoading);
+    when(() => mockImageFinderBloc.state).thenReturn(imageFinderStateLoading);
 
     await mockNetworkImage(() async => tester.pumpApp(const ImageFinderPage()));
     await tester.pump();
@@ -65,11 +66,11 @@ void main() {
     const imageFinderStateError = ImageFinderStateError(error: 'failure');
 
     whenListen(
-      mockImageFinderCubit,
+      mockImageFinderBloc,
       Stream.fromIterable([imageFinderStateError]),
     );
 
-    when(() => mockImageFinderCubit.state).thenReturn(imageFinderStateError);
+    when(() => mockImageFinderBloc.state).thenReturn(imageFinderStateError);
 
     await mockNetworkImage(() async => tester.pumpApp(const ImageFinderPage()));
     await tester.pump();
@@ -82,20 +83,21 @@ void main() {
   testWidgets(
     'New image button should load new image',
     (tester) async {
-      final mockImageFinderCubit = injectable.get<ImageFinderCubit>();
+      final mockImageFinderBloc = injectable.get<ImageFinderBloc>();
 
       final imageFinderStateLoaded = ImageFinderStateLoaded(
         image: CoffeeImageFixture.model,
       );
 
       whenListen(
-        mockImageFinderCubit,
+        mockImageFinderBloc,
         Stream.fromIterable([imageFinderStateLoaded]),
       );
 
-      when(() => mockImageFinderCubit.state).thenReturn(imageFinderStateLoaded);
+      when(() => mockImageFinderBloc.state).thenReturn(imageFinderStateLoaded);
 
-      when(mockImageFinderCubit.getImage).thenAnswer((_) async {});
+      when(() => mockImageFinderBloc.add(const GetImageEvent()))
+          .thenAnswer((_) async {});
 
       await mockNetworkImage(
         () async => tester.pumpApp(
@@ -105,8 +107,7 @@ void main() {
 
       await tester.tap(find.byIcon(Icons.refresh));
 
-      //getImage is called on build, so we need to verify for a second call
-      verify(mockImageFinderCubit.getImage);
+      verify(() => mockImageFinderBloc..add(const GetImageEvent()));
     },
   );
 
@@ -122,9 +123,12 @@ void main() {
       await tester.tap(find.byIcon(Icons.favorite));
 
       verify(
-        () => mockImageFinderCubit.saveLocalImage(
-          image: CoffeeImageFixture.model,
-        ),
+        () => mockImageFinderBloc
+          ..add(
+            SaveLocalImageEvent(
+              CoffeeImageFixture.model,
+            ),
+          ),
       ).called(1);
     },
   );
@@ -132,20 +136,21 @@ void main() {
   testWidgets(
     'Go to favorites button should navigate',
     (tester) async {
-      final mockFavoritesCubit = injectable.get<FavoritesCubit>();
+      final mockFavoritesBloc = injectable.get<FavoritesBloc>();
 
       final favoritesStateLoaded = FavoritesStateLoaded(
         images: CoffeeImageFixture.list,
       );
 
       whenListen(
-        mockFavoritesCubit,
+        mockFavoritesBloc,
         Stream.fromIterable([favoritesStateLoaded]),
       );
 
-      when(() => mockFavoritesCubit.state).thenReturn(favoritesStateLoaded);
+      when(() => mockFavoritesBloc.state).thenReturn(favoritesStateLoaded);
 
-      when(mockFavoritesCubit.getLocalImages).thenAnswer((_) async {});
+      when(() => mockFavoritesBloc.add(const GetLocalImagesEvent()))
+          .thenAnswer((_) async {});
 
       await mockNetworkImage(
         () async => tester.pumpApp(

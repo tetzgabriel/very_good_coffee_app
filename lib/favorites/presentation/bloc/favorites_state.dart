@@ -1,10 +1,15 @@
-part of 'favorites_cubit.dart';
+part of 'favorites_bloc.dart';
 
-class FavoritesState extends Equatable {
+@immutable
+abstract class FavoritesState extends Equatable {
   const FavoritesState();
+}
+
+class FavoritesInitial extends FavoritesState {
+  const FavoritesInitial();
 
   @override
-  List<dynamic> get props => [];
+  List<Object?> get props => [];
 }
 
 class FavoritesStateError extends FavoritesState {

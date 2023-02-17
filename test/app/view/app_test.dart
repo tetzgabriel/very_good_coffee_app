@@ -11,7 +11,7 @@ import '../../mocks/coffee_image_fixture.dart';
 void main() {
   setupTestServices();
 
-  final mockImageFinderCubit = injectable.get<ImageFinderCubit>();
+  final mockImageFinderBloc = injectable.get<ImageFinderBloc>();
 
   setUp(() {
     final imageFinderState = ImageFinderStateLoaded(
@@ -19,12 +19,14 @@ void main() {
     );
 
     whenListen(
-      mockImageFinderCubit,
+      mockImageFinderBloc,
       Stream.fromIterable([imageFinderState]),
     );
 
-    when(() => mockImageFinderCubit.state).thenReturn(imageFinderState);
-    when(mockImageFinderCubit.getImage).thenAnswer((_) async {});
+    when(() => mockImageFinderBloc.state).thenReturn(imageFinderState);
+
+    when(() => mockImageFinderBloc.add(const GetImageEvent()))
+        .thenAnswer((_) async {});
   });
 
   group('App', () {

@@ -15,10 +15,10 @@ void main() {
   final mockGetImage = MockGetImage();
   final mockSaveLocalImage = MockSaveLocalImage();
 
-  late ImageFinderCubit sut;
+  late ImageFinderBloc sut;
 
   setUp(() {
-    sut = ImageFinderCubit(
+    sut = ImageFinderBloc(
       getImage: mockGetImage,
       saveLocalImage: mockSaveLocalImage,
     );
@@ -35,10 +35,10 @@ void main() {
     );
   });
 
-  blocTest<ImageFinderCubit, ImageFinderState>(
+  blocTest<ImageFinderBloc, ImageFinderState>(
     'Emits ImageFinderStateLoaded when GetImage succeeds',
     build: () => sut,
-    act: (controller) => sut.getImage(),
+    act: (controller) => sut..add(const GetImageEvent()),
     expect: () => [
       const ImageFinderStateLoading(),
       ImageFinderStateLoaded(image: CoffeeImageFixture.model)
@@ -48,7 +48,7 @@ void main() {
     },
   );
 
-  blocTest<ImageFinderCubit, ImageFinderState>(
+  blocTest<ImageFinderBloc, ImageFinderState>(
     'Emits ImageFinderStateError when GetImage fails',
     build: () {
       when(mockGetImage.call).thenAnswer(
@@ -59,7 +59,7 @@ void main() {
 
       return sut;
     },
-    act: (controller) => sut.getImage(),
+    act: (controller) => sut.add(const GetImageEvent()),
     expect: () => [
       const ImageFinderStateLoading(),
       const ImageFinderStateError(error: 'failure')
@@ -69,10 +69,10 @@ void main() {
     },
   );
 
-  blocTest<ImageFinderCubit, ImageFinderState>(
+  blocTest<ImageFinderBloc, ImageFinderState>(
     'Calls usecase when saveLocalImage is called',
     build: () => sut,
-    act: (controller) => sut.saveLocalImage(image: CoffeeImageFixture.model),
+    act: (controller) => sut.add(SaveLocalImageEvent(CoffeeImageFixture.model)),
     expect: () => <ImageFinderState>[],
     verify: (_) {
       verify(() => mockSaveLocalImage.call(image: CoffeeImageFixture.model))
