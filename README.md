@@ -55,6 +55,32 @@ $ open coverage/index.html
 
 ---
 
+## Github actions ⚙️
+
+Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action<br>
+but I kept encountering problems with the unit tests of GetIt in the action. So, as a temporary measure I changed to `subosito/flutter-action@v2`
+
+## Architecture 📐
+
+This app uses the layered architecture from Very Good CLI by default.<br> In order to develop the functions needed for the app
+I decided to incorporate the clean-architecture in each feature project.
+The folder structure follows the example:
+```
+├── lib
+│   ├── {feature}
+│   │   ├── data
+│   │   │   ├── datasources
+│   │   │   └── repositories
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   ├── repositories
+│   │   │   └── usecases
+│   │   └── presentation
+│   │   │   ├── cubit
+│   │   │   ├── view
+│   │   │   └── {feature}.dart
+```
+
 ## Working with Translations 🌐
 
 This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
@@ -157,12 +183,6 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 ### Already supported languages
 
 For now, the strings used in this app are available both in English and Spanish.
-
-### Github actions
-
-Initially, this project used `VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1` as a github action<br>
-but I kept encountering problems with the unit tests of GetIt in the action. So, as a temporary measure I changed to `subosito/flutter-action@v2` 
-
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
